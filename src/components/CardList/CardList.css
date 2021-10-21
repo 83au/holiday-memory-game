@@ -1,0 +1,17 @@
+.CardList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  margin: auto;
+  
+  border: 2px solid white;
+  width: 90%;
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
