@@ -23,7 +23,7 @@ const initialImages = [
 ]
 
 
-const randomize = arr => [...arr].sort(() => Math.random() - .5)
+const randomize = arr => arr.sort(() => Math.random() - .5)
 
 
 const ImagesContext = createContext()

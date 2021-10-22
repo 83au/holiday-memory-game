@@ -1,20 +1,20 @@
 import React from 'react'
-import { useImages } from '../../contexts/ImagesContextProvider'
+import { useGame } from '../../contexts/GameContextProvider'
 import Card from './Card/Card'
 
 import './CardList.css'
 
 
 function CardList() {
-  const { images } = useImages()
+  const { cards } = useGame()
 
-  const cards = images.map((image, idx) => (
-    <Card key={idx + image} image={image} />
+  const cardComponents = cards.map(card => (
+    <Card key={card.id + card.image} {...card} />
   ))
 
   return (
     <ul className="CardList">
-      { cards }
+      { cardComponents }
     </ul>
   )
 }

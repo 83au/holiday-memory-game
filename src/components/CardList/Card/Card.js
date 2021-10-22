@@ -1,18 +1,19 @@
-import { useState } from 'react'
+
+import { useGame } from '../../../contexts/GameContextProvider'
 import halloween from '../../../images/halloween.svg'
 
 import './Card.css'
 
 
-function Card({ image }) {
-  const [flipCard, setFlipCard] = useState(false)
+function Card({ image, id, active }) {
+  const { flipCard } = useGame()
 
-  const handleClick = () => setFlipCard(prevFlipCard => !prevFlipCard)
+  const handleClick = () => flipCard(id)
 
   return (
     <li className="Card" onClick={handleClick}>
-      <img className={`Card__front ${flipCard && 'active'}`} src={image} alt={image} />
-      <img className={`Card__back ${!flipCard && 'active'}`} src={halloween} alt="Halloween" />
+      <img className={`Card__front ${active && 'active'}`} src={image} alt={image} />
+      <img className={`Card__back ${!active && 'active'}`} src={halloween} alt="Halloween" />
     </li>
   )
 }
