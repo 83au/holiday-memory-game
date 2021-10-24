@@ -6,20 +6,24 @@ const GameContext = createContext()
 
 
 function GameContextProvider({ children }) {
-  const { images } = useImages()
+  const { images, randomizeImages } = useImages()
 
-  const [cards, setCards] = useState(() => {
+  const setupCards = useCallback(() => {
     return images.map((image, index) => ({
       image,
       id: index,
       active: false,
       matched: false
     }))
-  })
+  }, [images])
+
+  const [cards, setCards] = useState(setupCards)
 
   const [activeCards, setActiveCards] = useState([])
 
   const [tries, setTries] = useState(0)
+
+  const [newGame, setNewGame] = useState(false)
 
   const [modal, setModal] = useState({
     show: false,
@@ -84,15 +88,26 @@ function GameContextProvider({ children }) {
         message: 'CONGRATS! YOU FOUND A MATCH!',
         closing: false
       })
-    }, 1000)
-    
+    }, 1000) 
   }, [cards, activeCards])
 
 
   const closeModal = () => setModal(prevModal =>({...prevModal, closing: true }))
 
+  
+  const initNewGame = () => {
+    randomizeImages()
+    setTries(0)
+    setNewGame(false)
+  }
+
 
   useEffect(() => checkForMatch(), [activeCards, checkForMatch])
+
+  // Reset game 
+  useEffect(() => {
+    setCards(setupCards)
+  }, [images, setupCards])
 
 
   useEffect(() => {
@@ -104,6 +119,15 @@ function GameContextProvider({ children }) {
           message: 'CONGRATS! YOU MATCHED THEM ALL!',
           closing: false
         })
+        setNewGame(true)
+        setTimeout(() => {
+          setCards(prevCards => {
+            return prevCards.map(card => ({
+              ...card,
+              active: false
+            }))
+          })
+        }, 500)
       }
     }
     checkForWin()
@@ -140,7 +164,9 @@ function GameContextProvider({ children }) {
     flipCard,
     modal,
     closeModal,
-    tries
+    tries,
+    newGame,
+    initNewGame
   }
 
 

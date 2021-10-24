@@ -1,24 +1,32 @@
 import { createPortal } from 'react-dom'
-
 import './Modal.css'
 
-function ModalOverlay({ message, onClose }) {
-  const handleClick = () => onClose()
+
+function ModalOverlay({ message, onClose, newGame, initNewGame }) {
+  const handleClose = () => onClose()
+
+  const handleNewGame = () => {
+    console.log('HANLDING NEW GAME')
+    initNewGame()
+    onClose()
+  }
 
   return (
-    <div className="Modal" onClick={handleClick}>
+    <div className="Modal">
       <h2 className="Modal__message">{message}</h2>
-      <button className="Modal__close">x</button>
+      {!newGame && <button className="Modal__close" onClick={handleClose}>&times;</button>}
+      {newGame && <button className="Modal__new-game" onClick={handleNewGame}>New game?</button>}
     </div>
   )
 }
 
-function Modal({ text, onClose }) {
+
+function Modal({ text, onClose, newGame, initNewGame }) {
   return (
     <>
       { 
         createPortal(
-          <ModalOverlay message={text} onClose={onClose} />,
+          <ModalOverlay message={text} onClose={onClose} newGame={newGame} initNewGame={initNewGame} />,
           document.getElementById('modal')
         )
       }

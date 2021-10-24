@@ -6,12 +6,12 @@
   bottom: 0;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   background-color: rgba(0, 0, 0, .9);
   color: #eee;
-  cursor: pointer;
   z-index: 10;
 }
 
@@ -28,5 +28,23 @@
   border: none;
   color: #eee;
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 5rem;
+}
+
+.Modal__new-game {
+  background-color: #771fc9;
+  border: none;
+  color: #eee;
+  cursor: pointer;
+  height: 5rem;
+  width: 14rem;
+  font-family: inherit;
+  font-size: 2rem;
+}
+
+@media only screen and (max-width: 440px) {
+  .Modal__message {
+    text-align: center;
+    font-size: 5rem;
+  }
 }
