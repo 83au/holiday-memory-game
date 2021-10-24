@@ -1,11 +1,10 @@
 .Card {
+  position: relative;
   perspective: 30rem;
   -moz-perspective: 30rem;
   transform-style: preserve-3d;
-  position: relative;
-  /* flex-basis: 18%; */
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
   cursor: pointer;
 }
 
