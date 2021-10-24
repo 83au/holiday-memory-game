@@ -1,9 +1,8 @@
 import halloween from '../../../images/halloween.svg'
-
 import './Card.css'
 
 
-function Card({ flipCard, image, id, active, }) {
+function Card({ flipCard, image, id, active }) {
   const handleClick = () => flipCard(id)
 
   return (

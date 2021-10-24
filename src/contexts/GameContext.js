@@ -18,13 +18,9 @@ function GameContextProvider({ children }) {
   }, [images])
 
   const [cards, setCards] = useState(setupCards)
-
   const [activeCards, setActiveCards] = useState([])
-
   const [tries, setTries] = useState(0)
-
   const [newGame, setNewGame] = useState(false)
-
   const [modal, setModal] = useState({
     show: false,
     message: null,

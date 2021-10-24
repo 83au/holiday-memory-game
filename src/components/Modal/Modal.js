@@ -6,7 +6,6 @@ function ModalOverlay({ message, onClose, newGame, initNewGame }) {
   const handleClose = () => onClose()
 
   const handleNewGame = () => {
-    console.log('HANLDING NEW GAME')
     initNewGame()
     onClose()
   }
@@ -26,7 +25,12 @@ function Modal({ text, onClose, newGame, initNewGame }) {
     <>
       { 
         createPortal(
-          <ModalOverlay message={text} onClose={onClose} newGame={newGame} initNewGame={initNewGame} />,
+          <ModalOverlay 
+            message={text} 
+            onClose={onClose} 
+            newGame={newGame} 
+            initNewGame={initNewGame} 
+          />,
           document.getElementById('modal')
         )
       }
