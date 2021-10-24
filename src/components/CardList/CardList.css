@@ -7,7 +7,7 @@
   margin: auto;
   
   /* border: 2px solid white; */
-  width: 70%;
+  width: 80rem;
   list-style: none;
 }
 
@@ -15,3 +15,22 @@ img {
   width: 100%;
   height: auto;
 }
+
+@media only screen and (max-width: 800px) {
+  .CardList {
+    width: 55rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .CardList {
+    width: 45rem;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .CardList {
+    width: 36rem;
+  }
+}
+

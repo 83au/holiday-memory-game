@@ -19,6 +19,8 @@ function GameContextProvider({ children }) {
 
   const [activeCards, setActiveCards] = useState([])
 
+  const [tries, setTries] = useState(0)
+
   const [modal, setModal] = useState({
     show: false,
     message: null,
@@ -51,6 +53,7 @@ function GameContextProvider({ children }) {
     const card2 = cards[activeCards[1]]
 
     setActiveCards([])
+    setTries(prevTries => prevTries + 1)
 
     if (card1.image !== card2.image) {
       setTimeout(() => {
@@ -59,7 +62,7 @@ function GameContextProvider({ children }) {
           message: 'SORRY, NOT A MATCH!'
         })
         
-      }, 200)
+      }, 1000)
       return
     }
 
@@ -81,7 +84,7 @@ function GameContextProvider({ children }) {
         message: 'CONGRATS! YOU FOUND A MATCH!',
         closing: false
       })
-    }, 200)
+    }, 1000)
     
   }, [cards, activeCards])
 
@@ -136,7 +139,8 @@ function GameContextProvider({ children }) {
     cards,
     flipCard,
     modal,
-    closeModal
+    closeModal,
+    tries
   }
 
 

@@ -7,9 +7,13 @@ function Card({ flipCard, image, id, active, }) {
   const handleClick = () => flipCard(id)
 
   return (
-    <li className="Card" onClick={!active && handleClick}>
-      <img className={`Card__front ${active && 'active'}`} src={image} alt={image} />
-      <img className={`Card__back ${!active && 'active'}`} src={halloween} alt="Halloween" />
+    <li className="Card" onClick={!active ? handleClick : undefined}>
+      <div className={`Card__side Card__side--front ${active && 'active'}`}>
+        <img src={image} alt={image} />
+      </div>
+      <div className={`Card__side Card__side--back ${!active && 'active'}`}>
+        <img src={halloween} alt="Halloween" />
+      </div>
     </li>
   )
 }

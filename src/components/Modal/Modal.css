@@ -12,6 +12,7 @@
   background-color: rgba(0, 0, 0, .9);
   color: #eee;
   cursor: pointer;
+  z-index: 10;
 }
 
 .Modal__message {
@@ -26,5 +27,6 @@
   background: transparent;
   border: none;
   color: #eee;
+  cursor: pointer;
   font-size: 3rem;
 }

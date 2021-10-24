@@ -1,5 +1,43 @@
 .App__heading {
-  margin: 3rem;
+  margin: 1rem;
   text-align: center;
   font-size: 4rem;
+}
+
+.App__tries {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.green {
+  color: #58da58;
+}
+
+.orange {
+  color: #eca32c;
+}
+
+.red {
+  color: #d14545;
+}
+
+@media only screen and (max-width: 440px) {
+  .App__heading {
+    font-size: 3rem;
+  }
+
+  .App__tries {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  .App__heading {
+    margin: 3rem 0;
+  }
+
+  .App__tries {
+    margin-bottom: 4rem;
+  }
 }
