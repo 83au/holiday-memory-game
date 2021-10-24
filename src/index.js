@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App/App'
-import GameContextProvider from './contexts/GameContextProvider';
-import ImagesContextProvider from './contexts/ImagesContextProvider'
+import GameContextProvider from './contexts/GameContext';
+import ImagesContextProvider from './contexts/ImagesContext'
 
 import './index.css';
 

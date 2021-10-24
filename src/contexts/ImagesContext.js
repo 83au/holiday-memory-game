@@ -5,6 +5,10 @@ import skull from '../images/skull.svg'
 import tombstone from '../images/tombstone.svg'
 import tree from '../images/tree.svg'
 import witchHat from '../images/witch-hat.svg'
+import candy from '../images/candy.svg'
+import cat from '../images/cat.svg'
+import costume from '../images/costume.svg'
+import pumpkin from '../images/pumpkin.svg'
 
 
 const initialImages = [
@@ -19,7 +23,15 @@ const initialImages = [
   tree,
   tree,
   witchHat,
-  witchHat
+  witchHat,
+  candy,
+  candy,
+  cat,
+  cat,
+  costume,
+  costume,
+  pumpkin,
+  pumpkin
 ]
 
 

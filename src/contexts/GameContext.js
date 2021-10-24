@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
-import { useImages } from './ImagesContextProvider'
+import { useImages } from './ImagesContext'
 
 
 const GameContext = createContext()
@@ -19,6 +19,13 @@ function GameContextProvider({ children }) {
 
   const [activeCards, setActiveCards] = useState([])
 
+  const [modal, setModal] = useState({
+    show: false,
+    message: null,
+    closing: false
+  })
+
+
   const flipCard = id => {
     setCards(prevCards => {
       const newCards = prevCards.map(card => {
@@ -36,6 +43,7 @@ function GameContextProvider({ children }) {
     setActiveCards(prevActive => [...prevActive, id])
   }
 
+
   const checkForMatch = useCallback(() => {
     if (activeCards.length < 2) return 
 
@@ -46,18 +54,12 @@ function GameContextProvider({ children }) {
 
     if (card1.image !== card2.image) {
       setTimeout(() => {
-        alert('SORRY, NOT A MATCH!')
-        setCards(prevCards => {
-          const newCards = prevCards.map(card => {
-            if (card.matched) return card
-            return {
-              ...card,
-              active: false
-            }
-          })
-          return newCards
+        setModal({ 
+          show: true,
+          message: 'SORRY, NOT A MATCH!'
         })
-      }, 100)
+        
+      }, 200)
       return
     }
 
@@ -74,27 +76,69 @@ function GameContextProvider({ children }) {
         })
         return newCards
       })
-      alert('CONGRATS!, YOU FOUND A MATCH!')
-    }, 100)
-
+      setModal({
+        show: true,
+        message: 'CONGRATS! YOU FOUND A MATCH!',
+        closing: false
+      })
+    }, 200)
+    
   }, [cards, activeCards])
 
+
+  const closeModal = () => setModal(prevModal =>({...prevModal, closing: true }))
+
+
   useEffect(() => checkForMatch(), [activeCards, checkForMatch])
+
 
   useEffect(() => {
     const checkForWin = () => {
       const gameOver = cards.every(card => card.matched)   
       if (gameOver) {
-        alert('CONGRATS! YOU MATCHED THEM ALL!')
+        setModal({
+          show: true,
+          message: 'CONGRATS! YOU MATCHED THEM ALL!',
+          closing: false
+        })
       }
     }
     checkForWin()
   }, [cards])
 
+
+  useEffect(() => {
+    if (!modal.closing) return
+
+    if (modal.message === 'SORRY, NOT A MATCH!') {    
+      setTimeout(() => {
+        setCards(prevCards => {
+          const newCards = prevCards.map(card => {
+            if (card.matched) return card
+            return {
+              ...card,
+              active: false
+            }
+          })
+          return newCards
+        })
+      }, 200)
+    }
+    setModal({
+      show: false,
+      message: null,
+      closing: false
+    })  
+  }, [modal])
+
+
   const context = {
     cards,
     flipCard,
+    modal,
+    closeModal
   }
+
 
   return (
     <GameContext.Provider value={context}>
@@ -102,6 +146,7 @@ function GameContextProvider({ children }) {
     </GameContext.Provider>
   )
 }
+
 
 export default GameContextProvider
 
