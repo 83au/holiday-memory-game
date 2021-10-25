@@ -1,7 +1,6 @@
 .Card {
   position: relative;
   perspective: 40rem;
-  -moz-perspective: 40rem;
   transform-style: preserve-3d;
   width: 12rem;
   height: 12rem;

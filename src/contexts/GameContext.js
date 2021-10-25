@@ -88,7 +88,7 @@ function GameContextProvider({ children }) {
   }, [cards, activeCards])
 
 
-  const closeModal = () => setModal(prevModal =>({...prevModal, closing: true }))
+  const closeModal = () => setModal(prevModal => ({...prevModal, closing: true }))
 
   
   const initNewGame = () => {
@@ -100,6 +100,7 @@ function GameContextProvider({ children }) {
 
   useEffect(() => checkForMatch(), [activeCards, checkForMatch])
 
+  
   // Reset game 
   useEffect(() => {
     setCards(setupCards)
