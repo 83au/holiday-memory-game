@@ -90,45 +90,35 @@ function GameContextProvider({ children }) {
 
   const closeModal = () => setModal(prevModal => ({...prevModal, closing: true }))
 
+
+  const checkForWin = useCallback(() => {
+    if (tries < 10) return
+
+    const gameOver = cards.every(card => card.matched)   
+    if (!gameOver) return
+
+    setModal({
+      show: true,
+      message: `CONGRATS! YOU MATCHED ALL THE CARDS IN ${tries} TRIES!`,
+      closing: false
+    })
+    setNewGame(true)
+  }, [cards, tries])
+
   
   const initNewGame = () => {
-    randomizeImages()
     setTries(0)
+    randomizeImages()
     setNewGame(false)
   }
 
 
-  useEffect(() => checkForMatch(), [activeCards, checkForMatch])
-
-  
-  // Reset game 
   useEffect(() => {
-    setCards(setupCards)
-  }, [images, setupCards])
+    checkForMatch()
+  }, [activeCards, checkForMatch, checkForWin])
 
 
-  useEffect(() => {
-    const checkForWin = () => {
-      const gameOver = cards.every(card => card.matched)   
-      if (gameOver) {
-        setModal({
-          show: true,
-          message: `CONGRATS! YOU MATCHED ALL THE CARDS IN ${tries} TRIES!`,
-          closing: false
-        })
-        setNewGame(true)
-        setTimeout(() => {
-          setCards(prevCards => {
-            return prevCards.map(card => ({
-              ...card,
-              active: false
-            }))
-          })
-        }, 500)
-      }
-    }
-    checkForWin()
-  }, [cards, tries])
+  useEffect(() => checkForWin(), [cards, checkForWin])
 
 
   useEffect(() => {
@@ -154,6 +144,24 @@ function GameContextProvider({ children }) {
       closing: false
     })  
   }, [modal])
+
+
+  useEffect(() => {
+    if (newGame) {
+      setTimeout(() => {
+        setCards(prevCards => {
+          return prevCards.map(card => ({
+            ...card,
+            active: false
+          }))
+        })
+      }, 500)
+    }
+  }, [newGame])
+
+  
+  // Reset game 
+  useEffect(() => setCards(setupCards), [images, setupCards])
 
 
   const context = {
