@@ -22,6 +22,7 @@ function App() {
       <h1 className="App__heading">Halloween Memory Game!</h1>
       <h2 className={`App__tries ${triesClass}`}>Tries: {tries}</h2>
       <CardList />
+      <footer>Icons by <a target="_blank" href="https://icons8.com" rel="noreferrer">Icons8</a></footer>
     </div>
   );
 }

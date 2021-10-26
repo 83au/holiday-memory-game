@@ -22,6 +22,19 @@
   color: #d14545;
 }
 
+footer {
+  color: #aaa;
+  text-align: center;
+}
+
+a:link {
+  color: #b844f1;
+}
+
+a:visited {
+  color: #f0a000
+}
+
 @media only screen and (orientation: portrait) {
   .App__heading {
     font-size: 5rem;
