@@ -24,10 +24,12 @@
 
 @media only screen and (orientation: portrait) {
   .App__heading {
+    font-size: 5rem;
     margin: 3rem 0;
   }
 
   .App__tries {
+    font-size: 4rem;
     margin-bottom: 4rem;
   }
 }

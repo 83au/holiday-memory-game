@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   const { modal, closeModal, tries, newGame, initNewGame } = useGame()
 
-  const triesClass = tries > 22 ? 'red' : tries > 15 ? 'orange' : 'green'
+  const triesClass = tries > 22 ? 'red' : tries > 14 ? 'orange' : 'green'
   
   return (
     <div className="App">
