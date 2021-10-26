@@ -128,7 +128,7 @@ function GameContextProvider({ children }) {
       }
     }
     checkForWin()
-  }, [cards])
+  }, [cards, tries])
 
 
   useEffect(() => {
