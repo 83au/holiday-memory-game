@@ -11,6 +11,7 @@ html {
 body {
   background-color: #232323;
   color: #eee;
+  min-height: 100vh;
   font-family: 'IM Fell English SC', serif;
 }
 
