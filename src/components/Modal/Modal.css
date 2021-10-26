@@ -38,17 +38,22 @@
   cursor: pointer;
   height: 5rem;
   width: 14rem;
+  margin: 1rem;
   font-family: inherit;
   font-size: 2rem;
 }
 
 @media only screen and (max-width: 440px) {
+  .Modal {
+    transform: translateZ(20rem);
+  }
   .Modal__message {
     text-align: center;
-    font-size: 5rem;
+    font-size: 3rem;
   }
   .Modal__close {
     top: 1rem;
     right: 1rem;
+    font-size: 4rem;
   }
 }

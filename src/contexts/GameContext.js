@@ -113,7 +113,7 @@ function GameContextProvider({ children }) {
       if (gameOver) {
         setModal({
           show: true,
-          message: 'CONGRATS! YOU MATCHED THEM ALL!',
+          message: `CONGRATS! YOU MATCHED ALL THE CARDS IN ${tries} TRIES!`,
           closing: false
         })
         setNewGame(true)
