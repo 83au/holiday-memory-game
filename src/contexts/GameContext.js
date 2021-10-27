@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import { useImages } from './ImagesContext'
+import { useModal } from './ModalContext'
 
 
 const GameContext = createContext()
@@ -7,6 +8,7 @@ const GameContext = createContext()
 
 function GameContextProvider({ children }) {
   const { images, randomizeImages } = useImages()
+  const { modal, setModal } = useModal()
 
   const setupCards = useCallback(() => {
     return images.map((image, index) => ({
@@ -21,11 +23,6 @@ function GameContextProvider({ children }) {
   const [activeCards, setActiveCards] = useState([])
   const [tries, setTries] = useState(0)
   const [newGame, setNewGame] = useState(false)
-  const [modal, setModal] = useState({
-    show: false,
-    message: null,
-    closing: false
-  })
 
 
   const flipCard = id => {
@@ -85,10 +82,7 @@ function GameContextProvider({ children }) {
         closing: false
       })
     }, 1000) 
-  }, [cards, activeCards])
-
-
-  const closeModal = () => setModal(prevModal => ({...prevModal, closing: true }))
+  }, [cards, activeCards, setModal])
 
 
   const checkForWin = useCallback(() => {
@@ -103,7 +97,7 @@ function GameContextProvider({ children }) {
       closing: false
     })
     setNewGame(true)
-  }, [cards, tries])
+  }, [cards, tries, setModal])
 
   
   const initNewGame = () => {
@@ -143,7 +137,7 @@ function GameContextProvider({ children }) {
       message: null,
       closing: false
     })  
-  }, [modal])
+  }, [modal.closing, modal.message, setModal])
 
 
   useEffect(() => {
@@ -167,8 +161,6 @@ function GameContextProvider({ children }) {
   const context = {
     cards,
     flipCard,
-    modal,
-    closeModal,
     tries,
     newGame,
     initNewGame
