@@ -12,6 +12,7 @@ function ModalOverlay({ message, onClose, newGame, initNewGame }) {
 
   return (
     <div className="Modal">
+      <div className="Modal__overlay" onClick={!newGame ? handleClose : undefined} />
       <h2 className="Modal__message">{message}</h2>
       {!newGame && <button className="Modal__close" onClick={handleClose}>&times;</button>}
       {newGame && <button className="Modal__new-game" onClick={handleNewGame}>New game?</button>}
